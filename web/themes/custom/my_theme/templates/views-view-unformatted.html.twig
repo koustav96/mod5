@@ -1,0 +1,45 @@
+<div class="blog-cards-container">
+	{% for row in rows %}
+		<div class="blog-card-outer">
+			<div class="blog-card">
+
+				{% set design_type = row.content['#node'].field_design.value %}
+
+				<div class="blog-card__image">
+					{% if row.content['#node'].field_image %}
+						<img src="{{ file_url(row.content['#node'].field_image.entity.uri.value) }}" alt="{{ row.content['#node'].title.value }}" class="blog-card__image-img">
+					{% endif %}
+				</div>
+				<div class="blog-card__content">
+					{% if row.content['#node'].title %}
+						<h2 class="blog-card__title">{{ row.content['#node'].title.value }}</h2>
+					{% endif %}
+				</div>
+
+				{%if design_type == 'Design2' %}
+					<div class="blog-card__image">
+						{% if row.content['#node'].field_image %}
+							<img src="{{ file_url(row.content['#node'].field_image.entity.uri.value) }}" alt="{{ row.content['#node'].title.value }}" class="blog-card__image-img">
+						{% endif %}
+					</div>
+					<div class="blog-card__alt-layout">
+						<h2 class="blog-card__title">{{ row.content['#node'].title.value }}</h2>
+					</div>
+
+				{% elseif design_type == 'Design3' %}
+					<div class="blog-card__image">
+						{% if row.content['#node'].field_image %}
+							<img src="{{ file_url(row.content['#node'].field_image.entity.uri.value) }}" alt="{{ row.content['#node'].title.value }}" class="blog-card__image-img">
+						{% endif %}
+					</div>
+					<div class="blog-card__title">
+						<h2 class="blog-card__title">{{ row.content['#node'].title.value }}</h2>
+					</div>
+					<div class="blog-card__description">
+						<p>{{ row.content['#node'].field_description.value }}</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+</div>
